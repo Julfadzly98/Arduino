@@ -15,7 +15,7 @@ void loop()
   digitalWrite(DIR, HIGH);
   Serial.println("Spinning Clockwise...");
   
-  for(int i = 0; i< 200; i++)
+  for(int i = 0; i< 700; i++)
   {
     digitalWrite(STEP, HIGH);
     delayMicroseconds(1000);
@@ -26,7 +26,7 @@ void loop()
   digitalWrite(DIR, HIGH);
   Serial.println("Spinning Clockwise...");
   
-  for(int i = 0; i< 200; i++)
+  for(int i = 0; i< 700; i++)
   {
     digitalWrite(STEP, HIGH);
     delayMicroseconds(1000);
@@ -37,7 +37,7 @@ void loop()
   digitalWrite(DIR, HIGH);
   Serial.println("Spinning Clockwise...");
   
-  for(int i = 0; i< 200; i++)
+  for(int i = 0; i< 700; i++)
   {
     digitalWrite(STEP, HIGH);
     delayMicroseconds(1000);
@@ -45,13 +45,14 @@ void loop()
     delayMicroseconds(1000);
   }
   delay(2000);
+  
 
 //////////////////////////////////bearer///////////////////////////////////////////////////////
  
   digitalWrite(DIR, LOW);
   Serial.println("Spinning Anti-Clockwise...");
 
-  for(int i = 0; i< 200; i++)
+  for(int i = 0; i< 700; i++)
   {
     digitalWrite(STEP, HIGH);
     delayMicroseconds(1000);
@@ -62,7 +63,7 @@ void loop()
   digitalWrite(DIR, LOW);
   Serial.println("Spinning Anti-Clockwise...");
 
-  for(int i = 0; i< 200; i++)
+  for(int i = 0; i< 700; i++)
   {
     digitalWrite(STEP, HIGH);
     delayMicroseconds(1000);
@@ -73,7 +74,7 @@ void loop()
   digitalWrite(DIR, LOW);
   Serial.println("Spinning Anti-Clockwise...");
 
-  for(int i = 0; i< 200; i++)
+  for(int i = 0; i< 700; i++)
   {
     digitalWrite(STEP, HIGH);
     delayMicroseconds(1000);
@@ -81,4 +82,5 @@ void loop()
     delayMicroseconds(1000);
   }
   delay(2000);
+  
 }

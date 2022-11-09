@@ -20,12 +20,12 @@ const char* ssid = "smartspace";
 const char* password = "smartspacekk";
 
 // Initialize Telegram BOT
-#define BOTtoken "5677470559:AAHTsbwu9qhzTCWrzpHOWC3k0Dpn_DlgsXs"  // your Bot Token (Get from Botfather)
+#define BOTtoken "5663680281:AAG-Bnw4qWBdlRGvxgPGQoVx-p6Fb04JrBA"  // your Bot Token (Get from Botfather)
 
 // Use @myidbot to find out the chat ID of an individual or a group
 // Also note that you need to click "start" on a bot before it can
 // message you
-#define CHAT_ID "1582110821"
+#define CHAT_ID "187740907"
 
 #ifdef ESP8266
   X509List cert(TELEGRAM_CERTIFICATE_ROOT);

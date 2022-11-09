@@ -20,12 +20,12 @@ const char* ssid = "smartspace";
 const char* password = "smartspacekk";
 
 // Initialize Telegram BOT
-#define BOTtoken "5677470559:AAHTsbwu9qhzTCWrzpHOWC3k0Dpn_DlgsXs"  // your Bot Token (Get from Botfather)
+#define BOTtoken "5663680281:AAG-Bnw4qWBdlRGvxgPGQoVx-p6Fb04JrBA"  // your Bot Token (Get from Botfather)
 
 // Use @myidbot to find out the chat ID of an individual or a group
 // Also note that you need to click "start" on a bot before it can
 // message you
-#define CHAT_ID "1582110821"
+#define CHAT_ID "187740907"
 
 #ifdef ESP8266
   X509List cert(TELEGRAM_CERTIFICATE_ROOT);
@@ -38,6 +38,10 @@ UniversalTelegramBot bot(BOTtoken, client);
 int botRequestDelay = 1000;
 unsigned long lastTimeBotRan;
 
+const int DIR = 12; //D6
+const int STEP = 14; //D5
+const int Ena = 2; //D4
+const int  steps_per_rev = 2000;
 int ledPin = 12;
 int ledPinn = 14;
 int inputPin = 13; // choose input pin (for Infrared sensor) 
@@ -63,11 +67,37 @@ void handleNewMessages(int numNewMessages) {
 
     String from_name = bot.messages[i].from_name;
 
-   // if (text == "/led_on") {
-     // bot.sendMessage(chat_id, "LED state set to ON", "");
-      //ledState = HIGH;
-      //digitalWrite(ledPin, ledState);
-    //}
+    if (text == "/led_on") {
+      bot.sendMessage(chat_id, "LED state set to ON", "");
+      ledState = HIGH;
+      digitalWrite(DIR, HIGH);
+      Serial.println("Spinning Clockwise...");
+      
+      for(int i = 0; i< 700; i++)
+      {
+        digitalWrite(STEP, HIGH);
+        delayMicroseconds(1000);
+        digitalWrite(STEP, LOW);
+        delayMicroseconds(1000);
+      }
+      digitalWrite(ledPin, ledState);
+    }
+
+    if (text == "/led_off") {
+      bot.sendMessage(chat_id, "LED state set to Off", "");
+      ledState = HIGH;
+      digitalWrite(DIR, LOW);
+      Serial.println("Spinning Anti-Clockwise...");
+      
+      for(int i = 0; i< 700; i++)
+      {
+        digitalWrite(STEP, HIGH);
+        delayMicroseconds(1000);
+        digitalWrite(STEP, LOW);
+        delayMicroseconds(1000);
+      }
+      digitalWrite(ledPin, ledState);
+    }
     
     if (text == "/state") {
       if (digitalRead(inputPin)){
@@ -87,7 +117,9 @@ void setup() {
     configTime(0, 0, "pool.ntp.org");      // get UTC time via NTP
     client.setTrustAnchors(&cert); // Add root certificate for api.telegram.org
   #endif
-
+  pinMode(STEP, OUTPUT);
+  pinMode(DIR, OUTPUT);
+  pinMode(Ena, OUTPUT);
   pinMode(ledPin, OUTPUT);
   pinMode(ledPinn, OUTPUT); 
   pinMode(inputPin, INPUT); // declare Infrared sensor as input
